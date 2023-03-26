@@ -2,10 +2,10 @@ import { useContext } from "react";
 import toast from "react-hot-toast";
 import { HiUser } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
-import { Authcontext } from "../../contexts/AuthProvider";
+// import { Authcontext } from "../../contexts/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(Authcontext);
+  // const { user, logOut } = useContext(Authcontext);
 
   return (
     <div className="">
@@ -37,13 +37,13 @@ const Navbar = () => {
                   Main
                 </Link>
               </li>
-              {user?.email && (
+              {/* {user?.email && (
                 <li>
                   <Link className="px-1 py-2" to={"/dashboard"}>
                     Dashboard
                   </Link>
                 </li>
-              )}
+              )} */}
               {/* {user?.email && (
                 <>
                   <li>
@@ -90,7 +90,7 @@ const Navbar = () => {
               Main
             </NavLink>
 
-            {user?.email && (
+            {/* {user?.email && (
               <>
                 <NavLink
                   to={"/dashboard"}
@@ -101,7 +101,7 @@ const Navbar = () => {
                   <li>Dashboard</li>
                 </NavLink>
               </>
-            )}
+            )} */}
             <NavLink
               to={"/blog"}
               className={({ isActive }) =>
@@ -130,7 +130,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end  flex items-center">
-          {user && user?.email && (
+          {/* {user && user?.email && (
             <label
               htmlFor="dashboard-drawer"
               tabIndex={2}
@@ -151,7 +151,7 @@ const Navbar = () => {
                 />
               </svg>
             </label>
-          )}
+          )} */}
 
           {/* swap theme begins*/}
           <label className="swap  swap-rotate mr-4 shadow-md p-1 rounded-lg ">
@@ -175,7 +175,7 @@ const Navbar = () => {
           </label>
           {/* swap theme ends*/}
 
-          {user?.email && user?.uid ? (
+          {/* {user?.email && user?.uid ? (
             <div className="bg-amber-300 rounded-none hidden lg:block  px-2 py-1 mx-3 shadow-md ">
               <h4 className="text-black">Welcome,</h4>
               <p className="font-bold text-black">{user?.displayName}</p>
@@ -189,9 +189,9 @@ const Navbar = () => {
                 Register
               </Link>
             </>
-          )}
+          )} */}
 
-          <div className="dropdown dropdown-end ">
+          {/* <div className="dropdown dropdown-end ">
             <label
               tabIndex={0}
               className="avatar tooltip tooltip-bottom z-50"
@@ -253,7 +253,7 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
