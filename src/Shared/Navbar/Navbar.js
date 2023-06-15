@@ -177,7 +177,7 @@ const Navbar = () => {
             <input
               type="button"
               value={"Search"}
-              className="btn-sm btn-info rounded-md"
+              className="btn-sm btn-info rounded-md cursor-pointer active:scale-95 active:opacity-80 transition-all"
             />
           </form>
           {/* Search box ends */}

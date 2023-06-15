@@ -103,7 +103,7 @@ const MyProducts = () => {
                         }}
                         className="btn btn-xs btn-success rounded-none "
                       >
-                        Advertise
+                        Boost Product
                       </button>
                     )}
                   </div>

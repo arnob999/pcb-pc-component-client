@@ -19,7 +19,7 @@ const Categories = () => {
 
   return (
     <div className="my-8 mb-8">
-      <h2 className="text-6xl py-16 text-center font-bold tracking-wider text-zinc-500">
+      <h2 className="text-6xl text-black font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-tl from-stone-500 to-gray-300/50 py-16">
         Browse {categories.length} categories of products
       </h2>
 
