@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Authcontext } from "../../../contexts/AuthProvider";
 import ProductCard from "../../../Components/ProductCard";
 import BookingModal from "../../../Components/BookingModal";
@@ -17,6 +17,8 @@ export default function Products() {
     refetch,
     isLoading,
     isFetching,
+    isInitialLoading,
+    isRefetching,
   } = useQuery({
     queryKey: ["queryProducts"],
     queryFn: () =>
@@ -30,21 +32,30 @@ export default function Products() {
   console.log(queryProducts);
   return (
     <div className="px-16">
-      <h3 className="text-3xl text-center">
-        Products available : {queryProducts?.length}
-        <div className="grid gap-10 my-10">
-          {queryProducts?.map((product) => (
-            <ProductCard
-              key={product._id}
-              product={product}
-              setProduct={setProduct}
-            />
-          ))}
-          {user && user?.email && product && (
-            <BookingModal product={product} setProduct={setProduct} />
-          )}
+      {isInitialLoading || isRefetching ? (
+        <div class="h-screen w-screen z-50 flex justify-center items-center">
+          <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-500"></div>
         </div>
-      </h3>
+      ) : (
+        <>
+          <h3 className="text-3xl text-center">
+            Products available : {queryProducts?.length}{" "}
+          </h3>
+
+          <div className="grid gap-10 my-10">
+            {queryProducts?.map((product) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+                setProduct={setProduct}
+              />
+            ))}
+            {user && user?.email && product && (
+              <BookingModal product={product} setProduct={setProduct} />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

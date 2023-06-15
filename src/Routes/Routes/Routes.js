@@ -40,7 +40,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/products",
-        loader: () => fetch(`${process.env.REACT_APP_URL}/products`),
         element: <Products />,
       },
       {

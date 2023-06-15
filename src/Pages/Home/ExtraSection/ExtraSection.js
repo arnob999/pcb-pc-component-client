@@ -2,7 +2,7 @@ import React from "react";
 
 const ExtraSection = () => {
   return (
-    <div className="relative">
+    <div className="relative mt-24">
       <img
         src="https://media.istockphoto.com/id/1143533722/photo/portrait-of-a-smiling-young-beautiful-girl-holding-laptop-computer-and-showing-thumbs-up.jpg?s=170667a&w=0&k=20&c=6B131-rETOp05reoV1Zx-8POiOc31IEm3SJUqauAnn8="
         className="absolute inset-0 object-cover w-full h-full brightness-50 -scale-x-100"
@@ -20,15 +20,19 @@ const ExtraSection = () => {
         </svg>
         <div className="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
           <div className="flex flex-col items-center justify-between xl:flex-row">
-            <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
+            <div className="w-full max-w-7xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
               <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-                The quick, brown fox <br className="hidden md:block" />
-                jumps over a lazy dog
+                Your One-Stop Shop for High-Quality PCB Components
               </h2>
-              <p className="max-w-xl mb-4 text-base text-gray-200 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudan, totam rem aperiam, eaque ipsa
-                quae.
+              <p className="max-w-7xl mb-4 text-base text-gray-200 md:text-lg">
+                Explore our e-commerce platform, designed to connect sellers
+                offering top-quality PCB components with discerning buyers. Our
+                curated collection offers a diverse range of reliable and
+                high-performance components for your electronic projects. With a
+                user-friendly interface, you can effortlessly navigate through
+                our inventory, compare specifications, and make secure
+                purchases. Start your journey with us today and elevate your
+                electronic projects to new heights.
               </p>
               <a
                 href="/"

@@ -19,8 +19,8 @@ const Categories = () => {
 
   return (
     <div className="my-8 mb-8">
-      <h2 className="text-4xl py-8 text-center font-bold">
-        Browse {categories.length} categories of products:
+      <h2 className="text-6xl py-16 text-center font-bold tracking-wider text-zinc-500">
+        Browse {categories.length} categories of products
       </h2>
 
       {isInitialLoading ? (
