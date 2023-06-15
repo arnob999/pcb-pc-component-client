@@ -3,7 +3,6 @@ import Login from "../../Authentication/Login/Login";
 import Register from "../../Authentication/Register/Register";
 import DashboradLayout from "../../Layout/DashboradLayout";
 import Main from "../../Layout/Main";
-// import Blog from "../../Pages/Blog/Blog";
 import AddProduct from "../../Pages/Dashboard/SellerDashboard/AddProduct/AddProduct";
 import MyOrders from "../../Pages/Dashboard/BuyerDashboard/MyOrders/MyOrders";
 import CategoryProducts from "../../Pages/Home/Categories/CategoryProducts";
@@ -19,6 +18,7 @@ import AllSellers from "../../Pages/Dashboard/AdminDashboard/AllSellers/AllSelle
 import ReportedItems from "../../Pages/Dashboard/AdminDashboard/ReportedItems/ReportedItems";
 import MyBuyers from "../../Pages/Dashboard/SellerDashboard/MyBuyers/MyBuyers";
 import Payment from "../../Pages/Dashboard/BuyerDashboard/Payment/Payment";
+import Products from "../../Pages/Home/Products/Products";
 
 export const router = createBrowserRouter([
   {
@@ -38,10 +38,11 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      // {
-      //   path: "/blog",
-      //   element: <Blog />,
-      // },
+      {
+        path: "/products",
+        loader: () => fetch(`${process.env.REACT_APP_URL}/products`),
+        element: <Products />,
+      },
       {
         path: "/category/:id",
         loader: ({ params }) =>
