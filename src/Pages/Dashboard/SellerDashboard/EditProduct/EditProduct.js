@@ -78,8 +78,8 @@ export default function EditProduct() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h3 className="text-3xl text-center">Add a product</h3>
+    <div className="max-w-3xl mx-auto ">
+      <img src={state?.picture} alt="" className="w-1/2 mx-auto" />
       <form
         onSubmit={handleSubmit(handleAddProduct)}
         className="grid grid-cols-2 gap-3 mt-10 "

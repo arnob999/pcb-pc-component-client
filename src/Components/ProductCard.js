@@ -122,7 +122,7 @@ const ProductCard = ({ product, setProduct }) => {
                 className="btn btn-outline rounded-md"
                 onClick={() => setProduct(product)}
               >
-                Book now!
+               Add to Cart
               </label>
             </div>
           </div>
