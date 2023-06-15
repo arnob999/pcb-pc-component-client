@@ -9,7 +9,7 @@ const Categories = () => {
   const [loading, setLoading] = useState(false);
   const isFetching = useIsFetching();
 
-  const { data: categories = [] } = useQuery({
+  const { data: categories = [], isInitialLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await axios.get(`${process.env.REACT_APP_URL}/categories`);
@@ -22,8 +22,8 @@ const Categories = () => {
       <h2 className="text-4xl py-8 text-center font-bold">
         Browse {categories.length} categories of products:
       </h2>
-      
-      {isFetching ? (
+
+      {isInitialLoading ? (
         <WobbleLoader />
       ) : (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-y-4">
