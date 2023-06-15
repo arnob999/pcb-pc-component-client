@@ -3,13 +3,18 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { Authcontext } from "../../../../contexts/AuthProvider";
+import ConfirmationModal from "../../../../Components/ConfirmationModal";
 
 const MyProducts = () => {
   const { user } = useContext(Authcontext);
   const [advertisingProduct, setAdvertisingProduct] = useState("");
-  const [isActive, setIsActive] = useState("");
+  const [deletingProduct, setDeletingProduct] = useState(null);
   const url = `${process.env.REACT_APP_URL}/products?email=${user?.email}`;
-  const { data: products = [], refetch } = useQuery({
+  const {
+    data: products = [],
+    refetch,
+    isInitialLoading,
+  } = useQuery({
     queryKey: ["products", user?.email],
     queryFn: () =>
       fetch(url, {
@@ -38,106 +43,125 @@ const MyProducts = () => {
         setAdvertisingProduct("");
         refetch();
       });
-    console.log(isActive);
-
-    fetch(
-      `${process.env.REACT_APP_URL}/products/changeStatus?product=${isActive}`,
-      {
-        method: "PUT",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+  }, [deletingProduct, advertisingProduct, refetch]);
+  const handleDelete = (product) => {
+    console.log(product);
+    // console.log(seller);
+    fetch(`${process.env.REACT_APP_URL}/seller/product/${product?._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.modifiedCount) {
-          toast.success("Product status changed");
-        }
-        setIsActive("");
         refetch();
+        if (data[0].deletedCount > 0) {
+          toast.success(
+            `${product?.product_name}'s account deleted successfully`
+          );
+          refetch();
+        }
       });
-  }, [isActive, advertisingProduct, refetch]);
-
-  // fetch(url)
-  //   .then((res) => res.json())
-  //   .then((data) => console.log(data));
+    console.log();
+  };
+  const closeModal = () => {
+    setDeletingProduct(null);
+  };
 
   return (
     <div>
-      <h3>My Products</h3>
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Image</th>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products?.map((product, idx) => (
-              <tr key={product._id}>
-                <th>{idx + 1}</th>
-                <td>
-                  <div className="avatar placeholder">
-                    <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
-                      <img src={product.picture} alt="" />
-                    </div>
-                  </div>
-                </td>
-                <td>{product.product_name}</td>
-                <td>${product.resale_price}</td>
-                <td>
-                  {
-                    <>
-                      {product.isPaid ? (
-                        <button className="btn btn-xs btn-warning rounded-none mr-3">
-                          Sold
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => {
-                            setIsActive(product._id);
-                          }}
-                          className="btn btn-info btn-xs rounded-none "
+      {isInitialLoading ? (
+        <div class="h-screen flex justify-center items-center">
+          <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-500"></div>
+        </div>
+      ) : (
+        <>
+          <h3>My Products</h3>
+          <div className="overflow-x-auto">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products?.map((product, idx) => (
+                  <tr key={product._id}>
+                    <th>{idx + 1}</th>
+                    <td>
+                      <div className="avatar placeholder">
+                        <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                          <img src={product.picture} alt="" />
+                        </div>
+                      </div>
+                    </td>
+                    <td>{product.product_name}</td>
+                    <td>৳ {product.resale_price}</td>
+                    <td>
+                      {
+                        <>
+                          {product.isPaid ? (
+                            <button className="badge btn-warning rounded-md mr-3 ">
+                              Sold
+                            </button>
+                          ) : (
+                            <button className="badge badge-info rounded-md  ">
+                              Active
+                            </button>
+                          )}
+                        </>
+                      }
+                    </td>
+                    <td>
+                      <div>
+                        <label
+                          htmlFor="confirmation-modal"
+                          className="btn btn-xs btn-error mr-3 rounded-none"
+                          onClick={() => setDeletingProduct(product)}
                         >
-                          Active
-                        </button>
-                      )}
-                    </>
-                  }
-                </td>
-                <td>
-                  <div>
-                    <button className="btn btn-xs btn-error mr-3 rounded-none">
-                      Delete
-                    </button>
-                    {product.isAdvertised ? (
-                      <button className="btn btn-disabled btn-xs text-white bg-gray-600">
-                        Advertised
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => {
-                          setAdvertisingProduct(product._id);
-                        }}
-                        className="btn btn-xs btn-success rounded-none "
-                      >
-                        Boost Product
-                      </button>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                          Delete
+                        </label>
+
+                        {product.isAdvertised ? (
+                          <button className="btn btn-disabled btn-xs text-white bg-gray-600">
+                            Boosted
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setAdvertisingProduct(product._id);
+                            }}
+                            className="btn btn-xs btn-success rounded-md "
+                          >
+                            Boost Product
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+      {deletingProduct && (
+        <ConfirmationModal
+          title={`Are you sure you want to delete ${deletingProduct.name}?`}
+          message={`Action cannot be undone`}
+          successAction={handleDelete}
+          closeModal={closeModal}
+          modalData={deletingProduct}
+          successButtonName="Delete"
+        />
+      )}
     </div>
   );
 };

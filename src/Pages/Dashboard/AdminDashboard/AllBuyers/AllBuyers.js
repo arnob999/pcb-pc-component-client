@@ -39,6 +39,7 @@ const AllBuyers = () => {
   const closeModal = () => {
     setDeletingBuyer(null);
   };
+  console.log(allbuyers);
   return (
     <div>
       <h2>All Buyers</h2>

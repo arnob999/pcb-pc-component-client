@@ -8,6 +8,7 @@ const ConfirmationModal = ({
   modalData,
   successButtonName,
 }) => {
+  console.log(modalData);
   return (
     <div>
       <input type="checkbox" id="confirmation-modal" className="modal-toggle" />
