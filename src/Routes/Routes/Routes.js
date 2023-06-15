@@ -47,9 +47,9 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`${process.env.REACT_APP_URL}/category/${params.id}`),
         element: (
-          <ProtectedRoute>
+          // <ProtectedRoute>
+          // </ProtectedRoute>
             <CategoryProducts />
-          </ProtectedRoute>
         ),
       },
     ],

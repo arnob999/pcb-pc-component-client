@@ -9,7 +9,7 @@ const Advertisement = () => {
         setAdvertisedProducts(data);
       });
   }, []);
-  // console.log(advertisedProducts);
+  console.log(advertisedProducts);
   if (advertisedProducts) {
     return (
       <>

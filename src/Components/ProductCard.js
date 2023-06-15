@@ -103,10 +103,12 @@ const ProductCard = ({ product, setProduct }) => {
             <div className="flex justify-between items-center">
               <div>
                 <span className="rounded-sm bg-red-400 mx-2 line-through px-2 py-1 text-2xl text-black">
-                  ${original_price}
+                  ৳{" "}
+                  {original_price}
                 </span>
                 <span className="rounded-sm bg-green-400 mx-2 text-black px-5 py-2 text-2xl ">
-                  ${resale_price}
+                  ৳{" "}
+                  {resale_price}
                 </span>
               </div>
               <span className="hidden lg:block badge badge-accent">

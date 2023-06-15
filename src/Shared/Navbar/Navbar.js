@@ -72,7 +72,7 @@ const Navbar = () => {
           </div>
           <Link
             to={"/"}
-            className=" normal-case text-2xl rounded-none text-white hidden lg:block leading-10 bg-amber-400 px-2 py-1  hover:bg-amber-500 active:scale-95 transition-all"
+            className=" normal-case text-2xl  text-white hidden lg:block leading-10 bg-amber-400 px-2 rounded-md  hover:bg-amber-500 active:scale-95 transition-all"
           >
             <div className="flex justify-between items-center">
               {/* <img
@@ -121,7 +121,7 @@ const Navbar = () => {
         <div className="navbar-center">
           <Link
             to={"/"}
-            className=" rounded-none normal-case text-xl block lg:hidden leading-10 bg-amber-300 px-2 py-1 hover:bg-amber-400 active:scale-95 transition-all"
+            className=" rounded-md normal-case text-xl block lg:hidden le`ad`ing-10 bg-amber-300 px-2 hover:bg-amber-400 active:scale-95 transition-all"
           >
             <div className="flex justify-between items-center">
               {/* <img
@@ -172,9 +172,13 @@ const Navbar = () => {
               }}
               type="text"
               placeholder="Search Here"
-              className="input w-full max-w-xs border border-zinc-700"
+              className="input-sm px-5 py-2 bg-inherit rounded-md w-full max-w-xs border border-zinc-700"
             />
-            <input type="button" value={"Search"} className="btn btn-info" />
+            <input
+              type="button"
+              value={"Search"}
+              className="btn-sm btn-info rounded-md"
+            />
           </form>
           {/* Search box ends */}
 
@@ -197,7 +201,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end ">
             <label
               tabIndex={0}
-              className="avatar tooltip tooltip-bottom z-50"
+              className="avatar tooltip tooltip-bottom z-50 mr-10"
               data-tip={`${
                 user?.displayName ? user.displayName : "Please, login"
               }`}
@@ -213,16 +217,23 @@ const Navbar = () => {
                     />
                   </>
                 ) : (
-                  <HiUser
-                    className="text-4xl tooltip tooltip-bottom"
-                    data-tip="Login to see username"
+                  // <HiUser
+                  //   className="text-4xl tooltip tooltip-bottom"
+                  //   data-tip="Login to see username"
+                  // />
+                  <img
+                    src="https://i.ibb.co/sHJw3ZH/avatar-Null.webp"
+                    alt=""
+                    className="tooltip tooltip-bottom w-5 h-5"
                   />
                 )}
               </div>
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className={`menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ${
+                user ? "" : "hidden"
+              }`}
             >
               {user && user.uid ? (
                 <>

@@ -5,21 +5,17 @@ const Banner = () => {
   const [isShowing, setIsShowing] = useState(true);
 
   return (
-    
-
     <section className="relative bg-[url(https://i.ibb.co/mJ5H4tz/ezgif-com-gif-maker.jpg)] bg-cover bg-no-repeat">
       <Transition
-    appear={true}
-    show={isShowing}
-    enter="transition-all duration-[2000ms] "
-    enterFrom="opacity-100 "
-    enterTo="opacity-0  "
-    className="font-bold"
-  >
-
-      <div className="absolute inset-0 bg-white/100 sm:bg-transparent bg-gradient-to-r from-cyan-600 to-blue-300 "></div>
-
-  </Transition>
+        appear={true}
+        show={isShowing}
+        enter="transition-all duration-[2000ms] "
+        enterFrom="opacity-100 "
+        enterTo="opacity-0  "
+        className="font-bold"
+      >
+        <div className="absolute inset-0 bg-white/100 sm:bg-transparent bg-gradient-to-r from-cyan-600 to-blue-300 "></div>
+      </Transition>
 
       <div className="relative max-w-screen-xl py-32 sm:px-6 lg:flex lg:h-screen lg:items-center">
         <div className="p-12 mr-auto max-w-xl text-center sm:text-left">
@@ -39,8 +35,7 @@ const Banner = () => {
               </strong>
             </h1>
             <p className="mt-4 max-w-lg sm:text-xl sm:leading-relaxed text-gray-200">
-              A all in one trade-off solution for your favorite day-to-day used
-              laptop.
+              Your One-Stop Shop for High-Quality PCB Components
             </p>
           </Transition>
           <Transition
@@ -80,8 +75,6 @@ const Banner = () => {
         </div>
       </div>
     </section>
-
-  
   );
 };
 

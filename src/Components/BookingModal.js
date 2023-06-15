@@ -93,7 +93,7 @@ const BookingModal = ({ product, setProduct }) => {
             />
             {/* <br /> */}
             <div className="flex items-center justify-end">
-              <span className="text-lg mr-7">Price: $</span>
+              <span className="text-lg mr-7">Price: ৳</span>
               <input
                 name="price"
                 type="text"
