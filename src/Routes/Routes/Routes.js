@@ -19,6 +19,7 @@ import ReportedItems from "../../Pages/Dashboard/AdminDashboard/ReportedItems/Re
 import MyBuyers from "../../Pages/Dashboard/SellerDashboard/MyBuyers/MyBuyers";
 import Payment from "../../Pages/Dashboard/BuyerDashboard/Payment/Payment";
 import Products from "../../Pages/Home/Products/Products";
+import EditProduct from "../../Pages/Dashboard/SellerDashboard/EditProduct/EditProduct";
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
         element: (
           // <ProtectedRoute>
           // </ProtectedRoute>
-            <CategoryProducts />
+          <CategoryProducts />
         ),
       },
     ],
@@ -94,6 +95,21 @@ export const router = createBrowserRouter([
         element: (
           <SellerRoute>
             <MyProducts />
+          </SellerRoute>
+        ),
+        // ,
+        // children: [
+        //   {
+        //     path: "edit/:id",
+        //     element: <EditProduct />,
+        //   },
+        // ]
+      },
+      {
+        path: "/dashboard/myproducts/edit/:id",
+        element: (
+          <SellerRoute>
+            <EditProduct />
           </SellerRoute>
         ),
       },

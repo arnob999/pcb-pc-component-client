@@ -44,7 +44,7 @@ const Navbar = () => {
               </li>
               {user?.email && (
                 <li>
-                  <Link className="px-1 py-2" to={"/dashboard"}>
+                  <Link className="px-1 py-2" to={"/dashboard/myproducts"}>
                     Dashboard
                   </Link>
                 </li>
@@ -98,7 +98,7 @@ const Navbar = () => {
             {user?.email && (
               <>
                 <NavLink
-                  to={"/dashboard"}
+                  to={"/dashboard/myproducts"}
                   className={({ isActive }) =>
                     isActive ? "text-xl mx-5 " : "text-xl mx-5"
                   }

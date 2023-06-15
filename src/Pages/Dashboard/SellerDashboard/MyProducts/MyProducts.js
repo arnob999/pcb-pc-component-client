@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Authcontext } from "../../../../contexts/AuthProvider";
 import ConfirmationModal from "../../../../Components/ConfirmationModal";
 
@@ -9,6 +9,7 @@ const MyProducts = () => {
   const { user } = useContext(Authcontext);
   const [advertisingProduct, setAdvertisingProduct] = useState("");
   const [deletingProduct, setDeletingProduct] = useState(null);
+  const navigate = useNavigate();
   const url = `${process.env.REACT_APP_URL}/products?email=${user?.email}`;
   const {
     data: products = [],
@@ -57,10 +58,8 @@ const MyProducts = () => {
       .then((data) => {
         console.log(data);
         refetch();
-        if (data[0].deletedCount > 0) {
-          toast.success(
-            `${product?.product_name}'s account deleted successfully`
-          );
+        if (data.deletedCount > 0) {
+          toast.success(`${product?.product_name} deleted successfully`);
           refetch();
         }
       });
@@ -78,8 +77,7 @@ const MyProducts = () => {
         </div>
       ) : (
         <>
-          <h3>My Products</h3>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto mt-6">
             <table className="table w-full">
               <thead>
                 <tr>
@@ -123,7 +121,7 @@ const MyProducts = () => {
                       <div>
                         <label
                           htmlFor="confirmation-modal"
-                          className="btn btn-xs btn-error mr-3 rounded-none"
+                          className="btn btn-xs btn-error mr-3 rounded-md"
                           onClick={() => setDeletingProduct(product)}
                         >
                           Delete
@@ -140,9 +138,19 @@ const MyProducts = () => {
                             }}
                             className="btn btn-xs btn-success rounded-md "
                           >
-                            Boost Product
+                            Boost
                           </button>
                         )}
+                        <button
+                          onClick={() => {
+                            navigate(`edit/${product?._id}`, {
+                              state: product,
+                            });
+                          }}
+                          className="btn-xs btn-primary ml-3 rounded-md active:scale-95 active:opacity-80 transition-all"
+                        >
+                          Edit
+                        </button>
                       </div>
                     </td>
                   </tr>
