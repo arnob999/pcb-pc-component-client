@@ -44,7 +44,7 @@ const Navbar = () => {
               </li>
               {user?.email && (
                 <li>
-                  <Link className="px-1 py-2" to={"/dashboard/myproducts"}>
+                  <Link className="px-1 py-2" to={"/dashboard"}>
                     Dashboard
                   </Link>
                 </li>
@@ -74,11 +74,11 @@ const Navbar = () => {
             to={"/"}
             className=" normal-case text-2xl  text-white hidden lg:block leading-10 rounded-md active:scale-95 transition-all ml-4"
           >
-              <img
-                src="https://i.ibb.co/Xz8sZ0N/Red-and-Gray-Modern-Tech-Business-Logo.png"
-                alt=""
-                className="w-32 rounded-lg  mr-2"
-              />
+            <img
+              src="https://i.ibb.co/Xz8sZ0N/Red-and-Gray-Modern-Tech-Business-Logo.png"
+              alt=""
+              className="w-32 rounded-lg  mr-2"
+            />
             {/* <div className="flex justify-between items-center">
               <p className="font-bold font text-black">Framework Peddler</p>
             </div> */}
@@ -98,7 +98,7 @@ const Navbar = () => {
             {user?.email && (
               <>
                 <NavLink
-                  to={"/dashboard/myproducts"}
+                  to={"/dashboard"}
                   className={({ isActive }) =>
                     isActive ? "text-xl mx-5 " : "text-xl mx-5"
                   }
@@ -125,7 +125,9 @@ const Navbar = () => {
           >
             <div className="flex justify-between items-center">
               <img
-                src={"https://i.ibb.co/Xz8sZ0N/Red-and-Gray-Modern-Tech-Business-Logo.png"}
+                src={
+                  "https://i.ibb.co/Xz8sZ0N/Red-and-Gray-Modern-Tech-Business-Logo.png"
+                }
                 alt=""
                 className="w-12 h-12 rounded-full mr-2 hidden lg:block "
               />
