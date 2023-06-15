@@ -7,6 +7,7 @@ import { Authcontext } from "../../../../contexts/AuthProvider";
 const MyProducts = () => {
   const { user } = useContext(Authcontext);
   const [advertisingProduct, setAdvertisingProduct] = useState("");
+  const [isActive, setIsActive] = useState("");
   const url = `${process.env.REACT_APP_URL}/products?email=${user?.email}`;
   const { data: products = [], refetch } = useQuery({
     queryKey: ["products", user?.email],
@@ -19,7 +20,6 @@ const MyProducts = () => {
   });
 
   useEffect(() => {
-    console.log(advertisingProduct);
     fetch(
       `${process.env.REACT_APP_URL}/products?product=${advertisingProduct}`,
       {
@@ -33,12 +33,32 @@ const MyProducts = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
-          toast.success("Prodcuts set for advertisement");
+          toast.success("Prodcut set for advertisement");
         }
         setAdvertisingProduct("");
         refetch();
       });
-  }, [advertisingProduct, refetch]);
+    console.log(isActive);
+
+    fetch(
+      `${process.env.REACT_APP_URL}/products/changeStatus?product=${isActive}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          toast.success("Product status changed");
+        }
+        setIsActive("");
+        refetch();
+      });
+  }, [isActive, advertisingProduct, refetch]);
 
   // fetch(url)
   //   .then((res) => res.json())
@@ -75,12 +95,17 @@ const MyProducts = () => {
                 <td>
                   {
                     <>
-                      {product.isSold ? (
+                      {product.isPaid ? (
                         <button className="btn btn-xs btn-warning rounded-none mr-3">
                           Sold
                         </button>
                       ) : (
-                        <button className="btn  btn-info btn-xs rounded-none ">
+                        <button
+                          onClick={() => {
+                            setIsActive(product._id);
+                          }}
+                          className="btn btn-info btn-xs rounded-none "
+                        >
                           Active
                         </button>
                       )}

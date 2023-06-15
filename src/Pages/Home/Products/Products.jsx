@@ -30,6 +30,7 @@ export default function Products() {
     refetch();
   }, [state]);
   console.log(queryProducts);
+
   return (
     <div className="px-16">
       {isInitialLoading ? (
@@ -39,16 +40,23 @@ export default function Products() {
       ) : (
         <>
           <h3 className="text-3xl text-center">
-            Products available : {queryProducts?.length}{" "}
+            Products available :{" "}
+            {
+              queryProducts?.filter(
+                (queryProduct) => queryProduct?.isPaid === false
+              ).length
+            }{" "}
           </h3>
 
           <div className="grid gap-10 my-10">
-            {queryProducts?.map((product) => (
-              <ProductCard
-                key={product._id}
-                product={product}
-                setProduct={setProduct}
-              />
+            {queryProducts.map((product) => (
+              <>
+                <ProductCard
+                  key={product._id}
+                  product={product}
+                  setProduct={setProduct}
+                />
+              </>
             ))}
             {user && user?.email && product && (
               <BookingModal product={product} setProduct={setProduct} />

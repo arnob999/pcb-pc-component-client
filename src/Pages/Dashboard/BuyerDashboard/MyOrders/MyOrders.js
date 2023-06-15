@@ -41,7 +41,7 @@ const MyOrders = () => {
                   </div>
                 </td>
                 <td>{order.product_name}</td>
-                <td>${order.price}</td>
+                <td>৳ {order.price}</td>
                 <td>
                   {order.isPaid ? (
                     <span className="text-primary">Paid</span>

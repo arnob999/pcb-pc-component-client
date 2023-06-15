@@ -22,6 +22,7 @@ const Payment = () => {
         <Elements stripe={stripePromise}>
           <CheckoutForm order={order}  />
         </Elements>
+        {/* <a href="https://stripe.com/docs/testing">Add test cards</a> */}
       </div>
     </div>
   );
