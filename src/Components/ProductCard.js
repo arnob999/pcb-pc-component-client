@@ -37,8 +37,11 @@ const ProductCard = ({ product, setProduct }) => {
 
   useEffect(() => {
     // console.log(advertisingProduct);
+  }, [reportedProduct]);
+  const handleReportProduct = (product) => {
+    console.log(product);
     fetch(
-      `${process.env.REACT_APP_URL}/products/reportproduct/reportproduct?=${reportedProduct}`,
+      `${process.env.REACT_APP_URL}/products/reportproduct/${product?._id}`,
       {
         method: "PUT",
         headers: {
@@ -55,7 +58,8 @@ const ProductCard = ({ product, setProduct }) => {
         // setAdvertisingProduct("");
         // refetch();
       });
-  }, [reportedProduct]);
+  };
+
   // console.log(sellerVerification);
   if (!isPaid) {
     return (
@@ -67,7 +71,7 @@ const ProductCard = ({ product, setProduct }) => {
           <p className="badge badge-secondary">{condition}</p>
           <h2 className="text-2xl text-left font-bold">{product_name}</h2>
           <span
-            onClick={() => setReportedProduct(product._id)}
+            onClick={() => handleReportProduct(product)}
             className="tooltip active:text-red-400"
             data-tip="Report product"
           >
@@ -103,12 +107,10 @@ const ProductCard = ({ product, setProduct }) => {
             <div className="flex justify-between items-center">
               <div>
                 <span className="rounded-sm bg-red-400 mx-2 line-through px-2 py-1 text-2xl text-black">
-                  ৳{" "}
-                  {original_price}
+                  ৳ {original_price}
                 </span>
                 <span className="rounded-sm bg-green-400 mx-2 text-black px-5 py-2 text-2xl ">
-                  ৳{" "}
-                  {resale_price}
+                  ৳ {resale_price}
                 </span>
               </div>
               <span className="hidden lg:block badge badge-accent">
@@ -122,7 +124,7 @@ const ProductCard = ({ product, setProduct }) => {
                 className="btn btn-outline rounded-md"
                 onClick={() => setProduct(product)}
               >
-               Add to Cart
+                Add to Cart
               </label>
             </div>
           </div>
