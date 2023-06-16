@@ -127,10 +127,10 @@ const Login = () => {
                   className="text-4xl text-white bg-gray-500 p-2 rounded-full active:p-3 transition-all"
                   onClick={() => handleAuthenticate(googleProvider)}
                 />
-                <FaGithub
+                {/* <FaGithub
                   className="text-4xl text-white bg-gray-500 p-2 rounded-full"
                   onClick={() => handleAuthenticate(githubProvider)}
-                />
+                /> */}
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">

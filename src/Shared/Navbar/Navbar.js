@@ -74,8 +74,9 @@ const Navbar = () => {
             to={"/"}
             className=" normal-case text-2xl  text-white hidden lg:block leading-10 rounded-md active:scale-95 transition-all ml-4"
           >
+            {/* Website logo */}
             <img
-              src="https://i.ibb.co/Xz8sZ0N/Red-and-Gray-Modern-Tech-Business-Logo.png"
+              src="https://i.ibb.co/cTC2rpQ/Red-and-Gray-Modern-Tech-Business-Logo.png"
               alt=""
               className="w-32 rounded-lg  mr-2"
             />
@@ -121,15 +122,17 @@ const Navbar = () => {
         <div className="navbar-center">
           <Link
             to={"/"}
-            className=" rounded-md normal-case text-xl block lg:hidden le`ad`ing-10 bg-amber-300 px-2 hover:bg-amber-400 active:scale-95 transition-all"
+            className=" rounded-md normal-case text-xl block lg:hidden leading-10 bg-amber-300 px-2 hover:bg-amber-400 active:scale-95 transition-all"
           >
             <div className="flex justify-between items-center">
+            {/* Website logo */}
+
               <img
                 src={
-                  "https://i.ibb.co/Xz8sZ0N/Red-and-Gray-Modern-Tech-Business-Logo.png"
+                  "https://i.ibb.co/cTC2rpQ/Red-and-Gray-Modern-Tech-Business-Logo.png"
                 }
                 alt=""
-                className="w-12 h-12 rounded-full mr-2 hidden lg:block "
+                className="w-12 rounded-full mr-2 hidden lg:block "
               />
               {/* <p className="font-bold text-black">Framework Peddler</p> */}
             </div>

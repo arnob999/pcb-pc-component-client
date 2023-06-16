@@ -24,17 +24,19 @@ const MyProducts = () => {
         },
       }).then((res) => res.json()),
   });
+  console.log(products);
+  // useEffect(() => {
+  //   refetch();
+  // }, [deletingProduct, advertisingProduct]);
 
-  useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_URL}/products?product=${advertisingProduct}`,
-      {
-        method: "PUT",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    )
+  const handleAdvertiseProduct = (product) => {
+    console.log(product);
+    fetch(`${process.env.REACT_APP_URL}/products/advertise/${product?._id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -44,7 +46,7 @@ const MyProducts = () => {
         setAdvertisingProduct("");
         refetch();
       });
-  }, [deletingProduct, advertisingProduct, refetch]);
+  };
   const handleDelete = (product) => {
     console.log(product);
     // console.log(seller);
@@ -133,9 +135,7 @@ const MyProducts = () => {
                           </button>
                         ) : (
                           <button
-                            onClick={() => {
-                              setAdvertisingProduct(product._id);
-                            }}
+                            onClick={() => handleAdvertiseProduct(product)}
                             className="btn btn-xs btn-success rounded-md "
                           >
                             Boost

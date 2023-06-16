@@ -148,7 +148,7 @@ const AddProduct = () => {
         />
         {/* <br /> */}
         <div className="flex items-center justify-around ">
-          <span className="text-lg mr-7">Price: $</span>
+          <span className="text-lg mr-7">Price: ৳</span>
           <input
             // name="original_price"
             {...register("original_price")}

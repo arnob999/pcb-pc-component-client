@@ -20,7 +20,7 @@ const Advertisement = () => {
       <>
         {/* <h3>{advertisedProducts.length}</h3> */}
         <h2 className="text-6xl text-black font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-tl from-stone-500 to-gray-300/50 pt-16 ">
-          Featured Products
+          Sponsored Products
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12 mx-24">
           {advertisedProducts.map((advertisedProduct) => (

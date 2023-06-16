@@ -154,7 +154,7 @@ export default function EditProduct() {
         />
         {/* <br /> */}
         <div className="flex items-center justify-around ">
-          <span className="text-lg mr-7">Price: $</span>
+          <span className="text-lg mr-7">Price: ৳ </span>
           <input
             // name="original_price"
             defaultValue={state?.original_price}
